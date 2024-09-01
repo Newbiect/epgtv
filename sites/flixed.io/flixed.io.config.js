@@ -14,9 +14,13 @@ module.exports = {
     items.forEach(item => {
       programs.push({
         title: item.program.title,
+		sub_title: item.program.episodeTitle,
         description: item.program.longDescription,
-        category: item.program.subType,
-        image: parseImage(item),
+		episode: item.program.episodeNum,
+		season: item.program.seasonNum,
+        category: item.program.genres,
+		actor: item.program.topCast,
+        icon: parseIcon(item),
         start: parseStart(item),
         stop: parseStop(item)
       })
@@ -26,7 +30,7 @@ module.exports = {
   }
 }
 
-function parseImage(item) {
+function parseIcon(item) {
   const uri = item.program.preferredImage.uri
 
   return uri ? `https://adma.tmsimg.com/assets/${uri}` : null
